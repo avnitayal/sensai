@@ -1,18 +1,14 @@
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
-import js from "@eslint/js";
-import next from "@next/eslint-plugin-next";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname || process.cwd(),
+  baseDirectory: __dirname,
 });
 
-export default [
-  js.configs.recommended,
-  ...compat.extends("next/core-web-vitals"),
-  {
-    plugins: { next },
-    rules: {
-      "react/no-unescaped-entities": "off", // optional, silences common warnings
-    },
-  },
-];
+const eslintConfig = [...compat.extends("next/core-web-vitals")];
+
+export default eslintConfig;
