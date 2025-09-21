@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
-
 import {
   Card,
   CardContent,
@@ -27,7 +26,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import useFetch from "@/hooks/use-fetch";
 import { onboardingSchema } from "@/app/lib/schema";
 import { updateUser } from "@/actions/user";
@@ -76,17 +74,6 @@ const OnboardingForm = ({ industries }) => {
   }, [updateResult, updateLoading]);
 
   const watchIndustry = watch("industry");
-
-  // ✅ Add safety check for undefined or empty industries
-  if (!industries || industries.length === 0) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <p className="text-red-600 text-lg font-medium">
-          User not found or industries data is missing.
-        </p>
-      </div>
-    );
-  }
 
   return (
     <div className="flex items-center justify-center bg-background">
